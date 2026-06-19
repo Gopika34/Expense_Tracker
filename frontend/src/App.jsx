@@ -15,6 +15,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Navigate } from 'react-router-dom';
 import Analytics from './pages/Analytics.jsx';
+import Profile from './pages/Profile.jsx';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="transactions" element={<Transactions />} />
           <Route path="add-transaction" element={<AddTransaction />} />
           <Route path="analytics" element={<Analytics />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
 
         <Route path="/signup" element={<SignupPage />} />

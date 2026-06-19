@@ -22,7 +22,13 @@ const LoginPage = () => {
             notifySuccess(`Welcome back! ${user.userName}`);
             navigate('/dashboard');
         } catch (err) {
-            notifyError(err.response?.data?.message || "Login failed");
+                console.log(err);
+                console.log(err.response);
+                console.log(err.response?.data);
+
+                notifyError(
+                    err.response?.data?.message || "Login failed"
+                );
         } finally {
             setIsLoading(false);
         }

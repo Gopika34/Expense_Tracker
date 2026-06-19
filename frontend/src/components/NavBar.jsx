@@ -1,6 +1,7 @@
 import { useAuth } from "../context/AuthContext.jsx";
 import { notifyInfo } from '../utils/toastMessages.js';
-import { HiMenu, HiOutlineLogout } from "react-icons/hi";
+import { HiMenu, HiOutlineLogout, HiOutlineUserCircle  } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const NavBar = ({ toggleSidebar }) => {
 
@@ -31,7 +32,7 @@ const NavBar = ({ toggleSidebar }) => {
         //     </button>
 
         // </div>
-                <div className="flex items-center justify-between bg-white border-b border-gray-200 px-4 md:px-6 py-4 shadow-sm sticky top-0 z-20">
+        <div className="flex items-center justify-between bg-white border-b border-gray-200 px-4 md:px-6 py-4 shadow-sm sticky top-0 z-20">
 
             <div className="flex items-center gap-3">
                 <button
@@ -47,11 +48,18 @@ const NavBar = ({ toggleSidebar }) => {
             </div>
 
             <div className="flex items-center gap-3">
-                {user?.userName && (
+                <Link
+                    to="/profile"
+                    className="flex items-center gap-1.5 text-gray-600 hover:text-indigo-600 transition-colors"
+                >
+                    <HiOutlineUserCircle className="text-2xl" />
+                </Link>
+                {/* {user?.userName && (
                     <span className="hidden sm:inline text-sm text-gray-500">
                         Hi, <span className="font-medium text-gray-700">{user.userName}</span>
                     </span>
-                )}
+                )} */}
+
                 <button
                     onClick={handleLogOut}
                     className="flex items-center gap-1.5 bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-3 md:px-4 py-2 rounded-lg transition-colors"

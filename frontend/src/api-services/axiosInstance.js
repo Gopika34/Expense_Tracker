@@ -6,24 +6,24 @@ export const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use(
-    (config)=>{
-        const token= localStorage.getItem("token")
-        if(token){
+    (config) => {
+        const token = localStorage.getItem("token")
+        if (token) {
             config.headers.authorization = `Bearer ${token}`
         }
         return config
     },
-    (error)=>{
+    (error) => {
         notifyError(error.message);
         return Promise.reject(error);
     }
 )
 
 axiosInstance.interceptors.response.use(
-    (response)=>{
+    (response) => {
         return response
     },
-    (error)=>{
+    (error) => {
 
         // server response
         if (error.response) {
@@ -34,9 +34,18 @@ axiosInstance.interceptors.response.use(
                     break;
 
                 case 401:
-                    notifyError("Unauthorized");
-                    localStorage.removeItem("token");
-                    window.location.href = "/login";
+
+                    if (
+                        !window.location.pathname.includes("/login")
+                    ) {
+
+                        notifyError("Session expired");
+
+                        localStorage.removeItem("token");
+
+                        window.location.href = "/login";
+                    }
+
                     break;
 
                 case 403:
