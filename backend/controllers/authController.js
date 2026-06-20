@@ -12,7 +12,7 @@ export const signup=async(req,res)=>{
             {email}
         ]
     });
-    if(ExistUser) return res.status(404).json({message:"User already exists"})
+    if(ExistUser) return res.status(409).json({message:"User already exists"})
     
     const hashedPassword= await  bcrypt.hash(password,10);
 
@@ -27,7 +27,6 @@ export const signup=async(req,res)=>{
 
 export const login=async(req,res)=>{
     const {email,password}=req.body;
-    console.log(email,password);
     
     if(!email || !password) return res.status(400).json({message:"All fields are required"})
     
@@ -51,9 +50,7 @@ export const login=async(req,res)=>{
         {expiresIn:"7d"}
     )
     console.log("TOKEN GENERATED:");
-    console.log(token);
-    // login controller
-    console.log("LOGIN SECRET:", process.env.JWT_SECRET);
+    console.log("LOGIN ID:", ExistUser._id);
     res.json({token})
 
 }
@@ -69,7 +66,7 @@ export const updateUsername = async (req, res) => {
         const updatedUser = await userModel.findByIdAndUpdate(
             req.user.id,
             { userName: userName.trim() },
-            { new: true }
+            {  returnDocument: "after" }
         )
 
         const token = jwt.sign(

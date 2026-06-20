@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from "axios";
-import { notifyError, notifySuccess } from '../utils/toastMessages';
+import { notifyError, notifySignupSuccess,notifySignupError} from '../utils/toastMessages';
 import { useNavigate, Link } from 'react-router-dom';
 
 const SignupPage = () => {
@@ -17,10 +17,10 @@ const SignupPage = () => {
         setIsLoading(true);
         try {
             await axios.post(`${url}/auth/signup`, { userName, email, password });
-            notifySuccess("Account created successfully!");
+            notifySignupSuccess();
             navigate('/login');
         } catch (err) {
-            notifyError(err.response?.data?.message || "Signup failed");
+            notifySignupError();
         } finally {
             setIsLoading(false);
         }

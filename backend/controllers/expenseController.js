@@ -4,7 +4,7 @@ export const getExpense= async(req,res)=>{
     try{
         const expense= await transactionModel.find({userId: req.user.id}).lean();
         // if(!expense) return res.status(404).json({message:"expense not found"}); 
-        
+        console.log("FETCH ID:", req.user.id);
         res.json(expense);
     }
     catch(err){
@@ -52,7 +52,7 @@ export const editExpense= async(req,res)=>{
                 userId: req.user.id
             },
             req.body,
-            {new:true}
+            { returnDocument: "after" }
         )
         if(!expense) return res.status(404).json({message:"Expense not found"});
         res.json(expense);

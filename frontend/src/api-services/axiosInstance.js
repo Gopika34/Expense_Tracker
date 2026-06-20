@@ -1,5 +1,5 @@
 import axios from "axios";
-import { notifyError } from "../utils/toastMessages";
+import { notifyError,notifySessionExpired,notifyServerError  } from "../utils/toastMessages";
 
 export const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL
@@ -33,17 +33,14 @@ axiosInstance.interceptors.response.use(
                     notifyError('Bad request');
                     break;
 
+
                 case 401:
 
-                    if (
-                        !window.location.pathname.includes("/login")
-                    ) {
-
-                        notifyError("Session expired");
-
+                    if (localStorage.getItem("token")) {
+                        notifySessionExpired();
                         localStorage.removeItem("token");
-
                         window.location.href = "/login";
+                        break;
                     }
 
                     break;
@@ -61,7 +58,7 @@ axiosInstance.interceptors.response.use(
                     break;
 
                 default:
-                    notifyError("Server error occurred");
+                    notifyServerError();
             }
         }
 

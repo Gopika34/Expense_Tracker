@@ -11,7 +11,11 @@ import {
 } from "../api-services/profileServices";
 
 import {
-    notifySuccess,
+    notifyLoginError,
+    notifyUsernameError,
+    notifyPasswordUpdated ,
+    notifyPasswordError,
+
     notifyError
 } from "../utils/toastMessages";
 
@@ -48,16 +52,11 @@ const Profile = () => {
             });
             console.log(res.data);
             login(res.data.token);
-            notifySuccess(
-                "Username updated successfully"
-            );
+            notifyLoginError();
             setShowUsernameModal(false);
         }
         catch (err) {
-            notifyError(
-                err.response?.data?.message ||
-                "Couldn't update username"
-            );
+            notifyUsernameError();
         }
         finally {
             setIsUpdatingName(false);
@@ -89,30 +88,17 @@ const Profile = () => {
                 currentPassword,
                 newPassword
             });
-
-            notifySuccess(
-                "Password updated successfully"
-            );
+            notifyPasswordUpdated();
 
             setCurrentPassword("");
-
             setNewPassword("");
-
             setShowPasswordModal(false);
-
         }
         catch (err) {
-
-            notifyError(
-                err.response?.data?.message ||
-                "Couldn't update password"
-            );
-
+            notifyPasswordError();
         }
         finally {
-
             setIsUpdatingPassword(false);
-
         }
 
     }

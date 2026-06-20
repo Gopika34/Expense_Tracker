@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from "axios";
 import { useAuth } from "../context/AuthContext.jsx"
 import { useNavigate, Link } from 'react-router-dom';
-import { notifySuccess, notifyError } from '../utils/toastMessages.js';
+import { notifyLoginSuccess , notifyLoginError } from '../utils/toastMessages.js';
 
 const LoginPage = () => {
     const [email, setEmail] = useState("")
@@ -19,16 +19,14 @@ const LoginPage = () => {
         try {
             const res = await axios.post(`${url}/auth/login`, { email, password });
             const user = login(res.data.token);
-            notifySuccess(`Welcome back! ${user.userName}`);
+            notifyLoginSuccess(`Welcome back! ${user.userName}`);
             navigate('/dashboard');
         } catch (err) {
                 console.log(err);
                 console.log(err.response);
                 console.log(err.response?.data);
-
-                notifyError(
-                    err.response?.data?.message || "Login failed"
-                );
+                
+                notifyLoginError();
         } finally {
             setIsLoading(false);
         }

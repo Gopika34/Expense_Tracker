@@ -1,6 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { fetchExpense, addExpense, deleteExpense, editExpense } from "../api-services/expenseServices.js"
-import { notifyError, notifySuccess, notifyInfo, notifyWarning } from '../utils/toastMessages.js';
+import {
+    notifyFetchError, notifyError, notifyExpenseUpdateError, notifyExpenseAddError, notifyExpenseAdded,
+    notifyExpenseDeleted, notifyExpenseDeleteError, notifyNoTransactions
+} from '../utils/toastMessages.js';
+import { useAuth } from "../context/AuthContext.jsx"
+import Swal from "sweetalert2";
 
 const ExpenseContext = createContext();
 
@@ -17,6 +22,7 @@ export const ExpenseProvider = ({ children }) => {
     const [selectedCategory, setSelectedCategory] = useState("All")
     const [sortBy, setSortBy] = useState("latest");
 
+    const { isAuthenticated } = useAuth();
     //Fetch on mount
     useEffect(() => {
         const getExpenses = async () => {
@@ -26,16 +32,20 @@ export const ExpenseProvider = ({ children }) => {
                 setExpenses(res.data);
             }
             catch (err) {
-                notifyError(err.message || "Error: expenses couldn't be fetched!");
+                notifyFetchError();
                 console.log(err.message);
             }
             finally {
                 setIsLoading(false);
             }
         }
-
-        getExpenses();
-    }, [])
+        if (isAuthenticated) {
+            getExpenses();
+        }
+        else {
+            setExpenses([]);
+        }
+    }, [isAuthenticated])
 
     //reset form
     const resetForm = () => {
@@ -47,6 +57,17 @@ export const ExpenseProvider = ({ children }) => {
 
     const handleForm = async (e) => {
         e.preventDefault();
+        const result = await Swal.fire({
+            title: editId
+                ? "Save changes?"
+                : "Add transaction?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "Cancel"
+        });
+
+        if (!result.isConfirmed) return;
         if (!title || !amount || !category) {
             notifyError("Please fill all fields!");
             return;
@@ -66,12 +87,18 @@ export const ExpenseProvider = ({ children }) => {
                 )
                 setExpenses(prev => prev.map(exp =>
                     exp._id === res.data._id ? res.data : exp
-                ))
-                notifyInfo("Expense updated!");
+                ));
+                Swal.fire({
+                    icon: "success",
+                    title: "Transaction updated!",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                notifyExpenseUpdated();
                 resetForm();
             }
             catch (err) {
-                notifyError(err.message || "Error: expense cant be updated!");
+                notifyExpenseUpdateError();
                 console.log(err.message);
             }
         }
@@ -83,35 +110,51 @@ export const ExpenseProvider = ({ children }) => {
                     amount: Number(amount)
                 })
                 setExpenses(prev => [...prev, res.data]);
-                notifySuccess("Expense added successfully!");
+                Swal.fire({
+                    icon: "success",
+                    title: "Saved successfully!",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                // notifyExpenseAdded();
                 resetForm();
             }
             catch (err) {
-                notifyError(err.message || "Error: expense cant be added!");
+                notifyExpenseAddError();
                 console.log(err.message);
             }
         }
     }
 
     const handleDelete = async (id) => {
-        const confirm = window.confirm("Delete this expense?");
-        if (!confirm) return;
+        const result = await Swal.fire({
+            title: "Delete transaction?",
+            text: "This action cannot be undone.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#ef4444",
+            cancelButtonColor: "#6b7280",
+            confirmButtonText: "Delete",
+            cancelButtonText: "Cancel"
+        });
+        if (!result.isConfirmed) return;
 
         try {
             await deleteExpense(id);
-            setExpenses(prev => prev.filter(ex => ex._id !== id));
-            notifyWarning("Expense deleted successfully!");
+            setExpenses(prev =>
+                prev.filter(exp => exp._id !== id)
+            );
+            notifyExpenseDeleted();
         }
         catch (err) {
-            notifyError(err.message || "Error: expense cant be deleted!");
-            console.log(err.message);
+            notifyExpenseDeleteError();
         }
     }
 
     const handleEdit = (id) => {
         const exp = expenses.find(ex => ex._id === id);
         if (!exp) {
-            notifyError("Error: expense not found!");
+            notifyNoTransactions();
             return;
         }
         setTitle(exp.title);
@@ -136,7 +179,7 @@ export const ExpenseProvider = ({ children }) => {
 
                 case "lowest": return a.amount - b.amount;
 
-                case "oldest": return ( new Date(a.createdAt) - new Date(b.createdAt));
+                case "oldest": return (new Date(a.createdAt) - new Date(b.createdAt));
 
                 case "latest":
                 default: return (new Date(b.createdAt) - new Date(a.createdAt));
@@ -153,7 +196,7 @@ export const ExpenseProvider = ({ children }) => {
         ? Math.max(...expenses.map((e) => e.amount))
         : 0;
 
-    const totalTransactions= expenses.length;
+    const totalTransactions = expenses.length;
 
     const lowestExpense = expenses.length > 0
         ? Math.min(...expenses.map((e) => e.amount))
@@ -162,12 +205,12 @@ export const ExpenseProvider = ({ children }) => {
     const avgExpense = expenses.length > 0
         ? totalExpenses / expenses.length
         : 0;
-    
-    const recentExpenses= [...expenses]
-        .sort((a,b) => new Date(b.createdAt) -new Date(a.createdAt))
-        .slice(0,5)
-    
-        return (
+
+    const recentExpenses = [...expenses]
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 5)
+
+    return (
         <ExpenseContext.Provider value={{
             expenses,
             isLoading,
@@ -195,6 +238,6 @@ export const ExpenseProvider = ({ children }) => {
     );
 }
 
-export const useExpense =()=>{
+export const useExpense = () => {
     return useContext(ExpenseContext);
 }

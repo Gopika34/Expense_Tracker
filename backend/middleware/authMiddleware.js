@@ -13,9 +13,9 @@ export const authMiddleware = (req, res, next) => {
         console.log(decoded);
         // middleware
         console.log("MIDDLEWARE SECRET:", process.env.JWT_SECRET);
-
+        console.log("TOKEN ID:", decoded.id);
+        
         req.user = decoded;
-
         next();
     }
     catch (err) {
