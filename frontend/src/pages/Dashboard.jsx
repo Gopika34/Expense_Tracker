@@ -5,7 +5,7 @@ import { ThreeDot } from "react-loading-indicators";
 import PieChartComponent from "../components/PieChartComponent";
 import BarChartComponent from "../components/BarChartComponent";
 import ExpenseItem from "../components/ExpenseItem";
-
+import RecentTransactions from "../components/RecentTransactions";
 const Dashboard = () => {
     const {
         expenses, isLoading, totalExpenses, totalTransactions,
@@ -49,7 +49,7 @@ const Dashboard = () => {
                     ? <p className="text-gray-400">No expenses yet</p>
                     : <ul className="divide-y divide-gray-100">
                         {recentExpenses.map(exp => (
-                            <ExpenseItem key={exp._id} expense={exp} handleDelete={handleDelete} handleEdit={handleEdit} />
+                            <RecentTransactions expense={exp}/>
                         ))}
                     </ul>
                 }
