@@ -3,10 +3,14 @@ import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from "./context/AuthContext";
 import { ExpenseProvider } from './context/ExpenseContext.jsx';
+import { ThemeProvider } from './context/ThemeContext.jsx';
+
 createRoot(document.getElementById('root')).render(
-  <AuthProvider>
-    <ExpenseProvider>
-      <App />
-    </ExpenseProvider>
-  </AuthProvider>,
+  <ThemeProvider>
+    <AuthProvider>
+      <ExpenseProvider>
+        <App />
+      </ExpenseProvider>
+    </AuthProvider>
+  </ThemeProvider>
 )

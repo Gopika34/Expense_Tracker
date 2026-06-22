@@ -4,8 +4,8 @@ import Statistics from "../components/Statistics";
 import { ThreeDot } from "react-loading-indicators";
 import PieChartComponent from "../components/PieChartComponent";
 import BarChartComponent from "../components/BarChartComponent";
-import ExpenseItem from "../components/ExpenseItem";
 import RecentTransactions from "../components/RecentTransactions";
+
 const Dashboard = () => {
     const {
         expenses, isLoading, totalExpenses, totalTransactions,
@@ -21,8 +21,10 @@ const Dashboard = () => {
 
     return (
         <div className="space-y-8">
-            <h2 className="text-2xl font-bold text-gray-800">Dashboard</h2>
-            <p className="text-gray-500">Welcome back, {user?.userName}</p>
+            <div>
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Dashboard</h2>
+                <p className="text-gray-500 dark:text-gray-400">Welcome back, {user?.userName}</p>
+            </div>
 
             <Statistics
                 totalExpenses={totalExpenses}
@@ -33,23 +35,23 @@ const Dashboard = () => {
             />
 
             <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-xl shadow-sm p-5">
-                    <h3 className="text-lg font-semibold text-gray-700 mb-4">Spending by Category</h3>
+                <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-5 transition-colors">
+                    <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4">Spending by Category</h3>
                     <PieChartComponent expenses={expenses} />
                 </div>
-                <div className="bg-white rounded-xl shadow-sm p-5">
-                    <h3 className="text-lg font-semibold text-gray-700 mb-4">Monthly Spending</h3>
+                <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-5 transition-colors">
+                    <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4">Monthly Spending</h3>
                     <BarChartComponent expenses={expenses} />
                 </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm p-5">
-                <h3 className="text-lg font-semibold text-gray-700 mb-4">Recent Transactions</h3>
+            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-5 transition-colors">
+                <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4">Recent Transactions</h3>
                 {recentExpenses.length === 0
-                    ? <p className="text-gray-400">No expenses yet</p>
-                    : <ul className="divide-y divide-gray-100">
+                    ? <p className="text-gray-400 dark:text-gray-500">No expenses yet</p>
+                    : <ul className="divide-y divide-gray-100 dark:divide-gray-800">
                         {recentExpenses.map(exp => (
-                            <RecentTransactions expense={exp}/>
+                            <RecentTransactions key={exp._id} expense={exp} />
                         ))}
                     </ul>
                 }

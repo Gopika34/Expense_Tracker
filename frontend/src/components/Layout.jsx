@@ -8,7 +8,7 @@ const Layout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
-        <div className="flex min-h-screen bg-gray-50">
+        <div className="flex min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors">
             <Sidebar isOpen={sidebarOpen} closeSidebar={() => setSidebarOpen(false)} />
 
             <div className="flex-1 w-full">

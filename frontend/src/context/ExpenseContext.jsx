@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { fetchExpense, addExpense, deleteExpense, editExpense } from "../api-services/expenseServices.js"
 import {
-    notifyFetchError, notifyError, notifyExpenseUpdateError, notifyExpenseAddError, notifyExpenseAdded,
+    notifyExpenseUpdated, notifyFetchError, notifyError, notifyExpenseUpdateError, notifyExpenseAddError, notifyExpenseAdded,
     notifyExpenseDeleted, notifyExpenseDeleteError, notifyNoTransactions
 } from '../utils/toastMessages.js';
 import { useAuth } from "../context/AuthContext.jsx"
@@ -51,7 +51,7 @@ export const ExpenseProvider = ({ children }) => {
     const resetForm = () => {
         setTitle("");
         setAmount("");
-        setCategory("");
+        setCategory("Food");
         setEditId(null);
     };
 

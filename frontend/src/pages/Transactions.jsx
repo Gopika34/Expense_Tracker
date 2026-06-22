@@ -21,18 +21,18 @@ const Transactions = () => {
 
     return (
         <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-800">Transactions</h2>
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Transactions</h2>
 
-            <div className="bg-white rounded-xl shadow-sm p-4 flex flex-wrap gap-4 items-center">
+            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-4 flex flex-wrap gap-4 items-center transition-colors">
                 <SearchBar search={search} setSearch={setSearch} />
                 <CategoryFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
                 <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm p-5">
+            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-5 transition-colors">
                 {filteredExpenses.length === 0
-                    ? <p className="text-gray-400">No expenses found</p>
-                    : <ul className="divide-y divide-gray-100">
+                    ? <p className="text-gray-400 dark:text-gray-500">No expenses found</p>
+                    : <ul className="divide-y divide-gray-100 dark:divide-gray-800">
                         {filteredExpenses.map(exp => (
                             <ExpenseItem
                                 key={exp._id}

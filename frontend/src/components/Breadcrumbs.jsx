@@ -14,8 +14,8 @@ const Breadcrumbs = () => {
     if (segments.length === 0) return null;
 
     return (
-        <nav className="text-sm text-gray-500 mb-4">
-            <Link to="/dashboard" className="hover:text-indigo-600">Home</Link>
+        <nav className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            <Link to="/dashboard" className="hover:text-indigo-600 dark:hover:text-indigo-400">Home</Link>
             {segments.map((seg, i) => {
                 const path = "/" + segments.slice(0, i + 1).join("/");
                 const isLast = i === segments.length - 1;
@@ -25,8 +25,8 @@ const Breadcrumbs = () => {
                     <span key={path}>
                         <span className="mx-2">/</span>
                         {isLast
-                            ? <span className="text-gray-800 font-medium">{label}</span>
-                            : <Link to={path} className="hover:text-indigo-600">{label}</Link>
+                            ? <span className="text-gray-800 dark:text-gray-100 font-medium">{label}</span>
+                            : <Link to={path} className="hover:text-indigo-600 dark:hover:text-indigo-400">{label}</Link>
                         }
                     </span>
                 );

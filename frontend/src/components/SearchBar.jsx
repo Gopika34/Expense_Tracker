@@ -5,7 +5,7 @@ const SearchBar = ({ search, setSearch }) => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search transactions..."
-            className="border border-gray-200 rounded-lg px-3 py-2 text-sm flex-1 min-w-[180px] focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 rounded-lg px-3 py-2 text-sm flex-1 min-w-[180px] focus:outline-none focus:ring-2 focus:ring-indigo-400"
         />
     )
 }
