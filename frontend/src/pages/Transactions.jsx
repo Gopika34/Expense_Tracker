@@ -23,7 +23,7 @@ const Transactions = () => {
         <div className="space-y-6">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Transactions</h2>
 
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-4 flex flex-wrap gap-4 items-center transition-colors">
+            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-4 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-stretch sm:items-center transition-colors">
                 <SearchBar search={search} setSearch={setSearch} />
                 <CategoryFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
                 <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />

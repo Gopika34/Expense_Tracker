@@ -4,7 +4,8 @@ import {
     XAxis,
     YAxis,
     Tooltip,
-    CartesianGrid
+    CartesianGrid,
+    ResponsiveContainer
 } from "recharts";
 
 const BarChartComponent = ({ expenses }) => {
@@ -20,14 +21,11 @@ const BarChartComponent = ({ expenses }) => {
             {
                 month: "short",
                 year: "numeric"
-            });
+            }
+        );
 
-        if (monthTotals[month]) {
-            monthTotals[month] += expense.amount;
-        }
-        else {
-            monthTotals[month] = expense.amount;
-        }
+        monthTotals[month] = 
+            (monthTotals[month] || 0) + expense.amount;
 
     });
 
@@ -39,25 +37,37 @@ const BarChartComponent = ({ expenses }) => {
     );
 
     return (
-        <BarChart
-            width={500}
-            height={300}
-            data={chartData}
-        >
 
-            <CartesianGrid strokeDasharray="3 3" />
+        <div className="w-full h-[280px] sm:h-[350px]">
 
-            <XAxis dataKey="month" />
+            <ResponsiveContainer 
+                width="100%" 
+                height="100%"
+            >
 
-            <YAxis />
+                <BarChart data={chartData}>
 
-            <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" />
 
-            <Bar
-                dataKey="amount"
-            />
+                    <XAxis 
+                        dataKey="month"
+                        tick={{fontSize:12}}
+                    />
 
-        </BarChart>
+                    <YAxis />
+
+                    <Tooltip />
+
+                    <Bar
+                        dataKey="amount"
+                        radius={[6,6,0,0]}
+                    />
+
+                </BarChart>
+
+            </ResponsiveContainer>
+
+        </div>
     );
 };
 

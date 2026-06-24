@@ -16,8 +16,7 @@ const NavBar = ({ toggleSidebar }) => {
     }
 
     return (
-        <div className="flex items-center justify-between bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 md:px-6 py-4 shadow-sm sticky top-0 z-20 transition-colors">
-
+        <div className="flex items-center justify-between w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-3 sm:px-4 md:px-6 py-3 sm:py-4 shadow-sm sticky top-0 z-20 transition-colors">
             <div className="flex items-center gap-3">
                 <button
                     onClick={toggleSidebar}
@@ -53,14 +52,16 @@ const NavBar = ({ toggleSidebar }) => {
                     // </span>
                 )} */}
                 <span className="hidden sm:inline text-sm font-medium text-gray-700 dark:text-gray-200">{user?.userName}</span>
-
                 <button
-                    onClick={toggleSidebar}
-                    className="md:hidden text-gray-700 dark:text-gray-300 text-2xl p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                    aria-label="Toggle menu"
+                    onClick={handleLogOut}
+                    className="flex items-center gap-1 md:flex text-gray-700 dark:text-gray-300 text-xl p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 >
-                    <HiOutlineLogout className="text-base" />
-                    <span className="hidden sm:inline">Logout</span>
+                    <HiOutlineLogout />
+
+                    <span className="hidden sm:inline text-sm">
+                        Logout
+                    </span>
+
                 </button>
             </div>
         </div>

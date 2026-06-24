@@ -34,7 +34,7 @@ const Dashboard = () => {
                 avgExpense={avgExpense}
             />
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
                 <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-5 transition-colors">
                     <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4">Spending by Category</h3>
                     <PieChartComponent expenses={expenses} />

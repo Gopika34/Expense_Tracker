@@ -6,7 +6,7 @@ const AddTransaction = () => {
     const { title, setTitle, amount, setAmount, category, setCategory, editId, handleForm, resetForm } = useExpense();
 
     return (
-        <div className="max-w-md mx-auto bg-white dark:bg-gray-900 rounded-xl shadow-sm p-6 space-y-5 transition-colors">
+        <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-900 rounded-xl shadow-sm p-4 sm:p-6 space-y-5 transition-colors">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">{editId ? "Edit Expense" : "Add Expense"}</h2>
 
             <form onSubmit={handleForm} className="space-y-4">

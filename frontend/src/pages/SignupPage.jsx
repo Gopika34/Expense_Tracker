@@ -28,7 +28,7 @@ const SignupPage = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 transition-colors">
-            <form onSubmit={handleSignup} className="bg-white dark:bg-gray-900 shadow-sm rounded-xl p-8 w-full max-w-sm space-y-5 transition-colors">
+            <form onSubmit={handleSignup} className="bg-white dark:bg-gray-900 shadow-sm rounded-xl p-5 sm:p-8 w-[90%] max-w-sm space-y-5 transition-colors">
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 text-center">Create account</h2>
 
                 <input

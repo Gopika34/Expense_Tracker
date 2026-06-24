@@ -57,11 +57,7 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
                     className="fixed inset-0 bg-black/50 z-30 md:hidden"
                 />
             )}
-
-            <div className={`
-                fixed md:static top-0 left-0 z-40
-                w-56 min-h-screen bg-gray-900 p-5 flex flex-col gap-2
-                transform transition-transform duration-300
+            <div className={`fixed md:static top-0 left-0 z-40 w-64 md:w-56 min-h-screen bg-gray-900 p-4 md:p-5 flex flex-col gap-2 transform transition-transform duration-300
                 ${isOpen ? "translate-x-0" : "-translate-x-full"}
                 md:translate-x-0
             `}>
