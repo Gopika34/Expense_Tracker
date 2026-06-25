@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import axios from "axios";
-import { notifySignupSuccess, notifySignupError } from '../utils/toastMessages';
+import { notifyError,notifySignupSuccess, notifySignupError } from '../utils/toastMessages';
 import { useNavigate, Link } from 'react-router-dom';
-
+import {signupSchema} from "../validation/schemas"
 const SignupPage = () => {
     const [email, setEmail] = useState("")
     const [userName, setUserName] = useState("")
@@ -15,6 +15,16 @@ const SignupPage = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         setIsLoading(true);
+        const result = signupSchema.safeParse({
+            userName,
+            email,
+            password
+        });
+        if(!result.success){
+            notifyError(result.error.issues[0].message);
+            setIsLoading(false);
+            return;
+        }
         try {
             await axios.post(`${url}/auth/signup`, { userName, email, password });
             notifySignupSuccess();

@@ -5,7 +5,6 @@ import SortDropdown from "../components/SortDropdown";
 import ExpenseItem from "../components/ExpenseItem";
 import { useNavigate } from "react-router-dom";
 import { ThreeDot } from "react-loading-indicators";
-
 const Transactions = () => {
     const {
         filteredExpenses, isLoading, search, setSearch,

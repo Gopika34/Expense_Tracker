@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 const transactionSchema = new mongoose.Schema({
     title:{
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     amount:{
         type: Number,
-        required: true
+        required: true,
+        min: 1
     },
     category:{
         type: String,

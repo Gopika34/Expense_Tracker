@@ -6,6 +6,7 @@ import {
 } from '../utils/toastMessages.js';
 import { useAuth } from "../context/AuthContext.jsx"
 import Swal from "sweetalert2";
+import { expenseSchema } from "../validation/schemas";
 
 const ExpenseContext = createContext();
 
@@ -57,6 +58,16 @@ export const ExpenseProvider = ({ children }) => {
 
     const handleForm = async (e) => {
         e.preventDefault();
+        const res = expenseSchema.safeParse({
+            title,
+            category,
+            amount
+        });
+        if (!res.success) {
+            notifyError(res.error.issues[0].message);
+            return;
+        }
+
         const result = await Swal.fire({
             title: editId
                 ? "Save changes?"

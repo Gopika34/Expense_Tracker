@@ -2,7 +2,8 @@ import { useState } from 'react'
 import axios from "axios";
 import { useAuth } from "../context/AuthContext.jsx"
 import { useNavigate, Link } from 'react-router-dom';
-import { notifyLoginSuccess, notifyLoginError } from '../utils/toastMessages.js';
+import { notifyError, notifyLoginSuccess, notifyLoginError } from '../utils/toastMessages.js';
+import { loginSchema } from "../validation/schemas";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("")
@@ -34,6 +35,17 @@ const LoginPage = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         setIsLoading(true);
+
+        const result = loginSchema.safeParse({
+            email,
+            password
+        });
+        if (!result.success) {
+            notifyError(result.error.issues[0].message);
+            setIsLoading(false);
+            return;
+        }
+
         console.log("Attempting login to:", `${url}/auth/login`); // ← add this
         try {
             const res = await axios.post(`${url}/auth/login`, { email, password });

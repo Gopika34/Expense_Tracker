@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 
 export const signup=async(req,res)=>{
     const {userName,email,password}=req.body;
-    if(!userName || !email || !password) return res.status(400).json({message:"All fields are required"})
 
     const ExistUser= await userModel.findOne({
         $or:[
@@ -27,9 +26,7 @@ export const signup=async(req,res)=>{
 
 export const login=async(req,res)=>{
     const {email,password}=req.body;
-    
-    if(!email || !password) return res.status(400).json({message:"All fields are required"})
-    
+
     const ExistUser= await userModel.findOne({email});
     if(!ExistUser){
         return res.status(404).json({
@@ -59,9 +56,6 @@ export const login=async(req,res)=>{
 export const updateUsername = async (req, res) => {
     try {
         const { userName } = req.body;
-        if (!userName || !userName.trim()) {
-            return res.status(400).json({ message: "Username cannot be empty" });
-        }
 
         const updatedUser = await userModel.findByIdAndUpdate(
             req.user.id,
@@ -93,10 +87,6 @@ export const updateUsername = async (req, res) => {
 export const updatePassword = async (req, res) => {
     try {
         const { currentPassword, newPassword } = req.body;
-
-        if (!currentPassword || !newPassword) {
-            return res.status(400).json({ message: "Both current and new password are required" });
-        }
 
         const user = await userModel.findById(req.user.id);
         if (!user) {
