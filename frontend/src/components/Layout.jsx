@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
+import NavBar from "./NavBar";
 import Sidebar from "./Sidebar";
 import Breadcrumbs from "./Breadcrumbs";
 
@@ -16,7 +16,7 @@ const Layout = () => {
 
             <div className="flex-1 min-w-0">
 
-                <Navbar
+                <NavBar
                     toggleSidebar={() => setSidebarOpen(prev => !prev)}
                 />
 
