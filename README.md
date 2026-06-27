@@ -197,7 +197,7 @@ npm run dev
 
 ## 🔎 Search, Filter & Sort
 
-![Search Filter](./frontend/screenshots/11-search-filter-sort.png)
+![Search Filter](./frontend/screenshots/11-search-filter.png)
 
 ---
 
