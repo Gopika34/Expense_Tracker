@@ -161,13 +161,13 @@ npm run dev
 
 ## ➕ Add Expense
 
-![Add Expense](./frontend/screenshots/05-add-expense-modal.png)
+![Add Expense](./frontend/screenshots/05-add-expense.png)
 
 ---
 
 ## ✏ Edit Expense
 
-![Edit Expense](./frontend/screenshots/06-edit-expense-modal.png)
+![Edit Expense](./frontend/screenshots/06-edit-expense.png)
 
 ---
 
@@ -183,9 +183,9 @@ npm run dev
 
 ---
 
-## 🔎 Search, Filter & Sort
+## 👤 Profile
 
-![Search Filter](./frontend/screenshots/09-search-filter-sort.png)
+![Profile](./frontend/screenshots/09-profile-page.png)
 
 ---
 
@@ -193,6 +193,11 @@ npm run dev
 
 ![Mobile View](./frontend/screenshots/10-mobile-view.png)
 
+---
+
+## 🔎 Search, Filter & Sort
+
+![Search Filter](./frontend/screenshots/11-search-filter-sort.png)
 
 ---
 
