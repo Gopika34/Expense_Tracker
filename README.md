@@ -2,7 +2,11 @@
 
 A full-stack MERN expense tracking application with JWT authentication, real-time analytics, and a responsive multi-page dashboard.
 
-**Live Demo:** Coming soon (deployment in progress)
+**Live Demo:** 
+
+Frontend: https://expense-tracker-rm1emlkzc-mern-stack5.vercel.app
+
+Backend API: https://expense-tracker-api-vsil.onrender.com
 
 ---
 
@@ -131,7 +135,65 @@ npm run dev
 
 ## Screenshots
 
-_(Add screenshots of Dashboard, Transactions, and Analytics pages here)_
+
+## Login
+
+![Login](./screenshots/01-login.png)
+
+---
+
+## Signup
+
+![Signup](./screenshots/02-signup.png)
+
+---
+
+## Dashboard (Light)
+
+![Dashboard Light](./screenshots/03-dashboard-light.png)
+
+---
+
+## Dashboard (Dark)
+
+![Dashboard Dark](./screenshots/04-dashboard-dark.png)
+
+---
+
+## Add Expense
+
+![Add Expense](./screenshots/05-add-expense-modal.png)
+
+---
+
+## Edit Expense
+
+![Edit Expense](./screenshots/06-edit-expense-modal.png)
+
+---
+
+## Transactions
+
+![Transactions](./screenshots/07-transactions-page.png)
+
+---
+
+## Analytics
+
+![Analytics](./screenshots/08-analytics-page.png)
+
+---
+
+## Search, Filter & Sort
+
+![Search Filter](./screenshots/09-search-filter-sort.png)
+
+---
+
+## Mobile Responsive
+
+![Mobile](./screenshots/10-mobile-view.png)
+
 
 ---
 
