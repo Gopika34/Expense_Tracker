@@ -135,64 +135,63 @@ npm run dev
 
 ## Screenshots
 
+## 🔐 Login
 
-## Login
-
-![Login](./screenshots/01-login.png)
-
----
-
-## Signup
-
-![Signup](./screenshots/02-signup.png)
+![Login](./frontend/screenshots/01-login.png)
 
 ---
 
-## Dashboard (Light)
+## 📝 Signup
 
-![Dashboard Light](./screenshots/03-dashboard-light.png)
-
----
-
-## Dashboard (Dark)
-
-![Dashboard Dark](./screenshots/04-dashboard-dark.png)
+![Signup](./frontend/screenshots/02-signup.png)
 
 ---
 
-## Add Expense
+## 📊 Dashboard (Light Mode)
 
-![Add Expense](./screenshots/05-add-expense-modal.png)
-
----
-
-## Edit Expense
-
-![Edit Expense](./screenshots/06-edit-expense-modal.png)
+![Dashboard Light](./frontend/screenshots/03-dashboard-light.png)
 
 ---
 
-## Transactions
+## 🌙 Dashboard (Dark Mode)
 
-![Transactions](./screenshots/07-transactions-page.png)
-
----
-
-## Analytics
-
-![Analytics](./screenshots/08-analytics-page.png)
+![Dashboard Dark](./frontend/screenshots/04-dashboard-dark.png)
 
 ---
 
-## Search, Filter & Sort
+## ➕ Add Expense
 
-![Search Filter](./screenshots/09-search-filter-sort.png)
+![Add Expense](./frontend/screenshots/05-add-expense-modal.png)
 
 ---
 
-## Mobile Responsive
+## ✏ Edit Expense
 
-![Mobile](./screenshots/10-mobile-view.png)
+![Edit Expense](./frontend/screenshots/06-edit-expense-modal.png)
+
+---
+
+## 📄 Transactions
+
+![Transactions](./frontend/screenshots/07-transactions-page.png)
+
+---
+
+## 📈 Analytics
+
+![Analytics](./frontend/screenshots/08-analytics-page.png)
+
+---
+
+## 🔎 Search, Filter & Sort
+
+![Search Filter](./frontend/screenshots/09-search-filter-sort.png)
+
+---
+
+## 📱 Mobile View
+
+![Mobile View](./frontend/screenshots/10-mobile-view.png)
 
 
 ---
